@@ -14,7 +14,7 @@
   $category_array = get_categories();
 
   // display as links to cat pages
-  display_categories($category_array);
+  //display_categories($category_array);
 
   // if logged in as admin, show add, delete, edit cat links
   if(isset($_SESSION['admin_user'])) {

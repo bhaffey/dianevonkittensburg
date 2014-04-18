@@ -133,7 +133,7 @@ function display_items($items_array) {
     //create table
     //create a table row for each item
     foreach ($items_array as $row) {
-      echo "<div style=\"float:left\"><table width=\"300px\" border=\"0\">";
+      echo "<div align=\"center\"><table width=\"500px\" border=\"0\">";
       $url = "show_item.php?items_id=".$row['items_id'];
 
       //echo $row['name'];
@@ -141,12 +141,18 @@ function display_items($items_array) {
       //$title = "Name of Item ";
       $title = ucfirst($row['name']);
       do_html_url($url, $title);
+      //print_r($row['image_loc']);
+      echo "<img src=\"images/".$row['image_loc']."\"
+              //style=\"border: 1px solid black; width: 150px; height: 150px\"/>";
       echo "</td>";
       echo "</tr>";
 
       echo "<tr><td style=\"text-align: center; padding: 10px\">";
       if (@file_exists("images/".$row['category'].".jpg")) {
-        $title = "<img src=\"images/".$row['image_loc'].".jpg\"
+        
+        //echo "<img src=\"images/".$row['image_loc']."\"
+              //style=\"border: 1px solid black\"/>";
+        $title = "<img src=\"images/".$row['image_loc']."\"
                   style=\"border: 1px solid black\"/>";
         do_html_url($url, $title);
       } else {
@@ -165,15 +171,15 @@ function display_items($items_array) {
 function display_item_details($item) {
   // display all details about this item
   if (is_array($item)) {
-    echo "<table style=\"padding-left: 80px; padding-top: 20px; padding-bottom: 20px\"><tr>";
+    echo "<table style=\"padding-left: 120px; padding-top: 20px; padding-bottom: 20px\"><tr>";
     //display the picture if there is one
     //if (@file_exists("images/".$item['image_loc'].".jpg"))  {
       //$size = GetImageSize("images/hoodie_smaller.jpg");
       //$size = GetImageSize("images/".$item['image_loc'].".jpg");
       //if(($size[0] > 0) && ($size[1] > 0)) {
         //echo "<td><img src=\"images/".$item['image_loc'].".jpg\"
-        echo "<td><img src=\"images/".$item['image_loc']."\"
-              style=\"border: 1px solid black\"/></td>";
+        echo "<td style=\"padding-left: 220px;\"><img src=\"images/".$item['image_loc']."\"
+              style=\"border: 1px solid black; width: 400px; height: 400px\"/></td>";
       //}
    // }
     echo "<td><ul style=\"list-style-type: none; line-height:250%; font-size: 18px\">";
@@ -181,11 +187,9 @@ function display_item_details($item) {
     echo $item['name'];
     echo "<li><strong>Description:</strong> ";
     echo $item['description'];
-    echo "</li><li><strong>Category:</strong> ";
-    echo $item['category'];
     echo "</li><li><strong>Size:</strong> ";
     echo $item['size'];
-    echo "</li><li><strong>Our Price:</strong> ";
+    echo "</li><li><strong>Our Price:</strong> $";
     echo number_format($item['price'], 2);
     echo "</li><li><strong>Quantity Available:</strong> ";
     echo $item['quantity'];

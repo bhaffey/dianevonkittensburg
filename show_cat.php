@@ -14,7 +14,7 @@
   display_items($items_array);
 
 //print array for testing purposes
-  print_r($items_array);
+  //print_r($items_array);
 
   // if logged in as admin, show add, delete item links
   if(isset($_SESSION['admin_user'])) {
