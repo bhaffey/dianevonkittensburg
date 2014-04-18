@@ -78,9 +78,10 @@ function calculate_price($cart) {
   $price = 0.0;
   if(is_array($cart)) {
     $conn = db_connect();
-    foreach($cart as $isbn => $qty) {
+    foreach($cart as $items_id => $qty) {
       $query = "select price from items where items_id='".$items_id."'";
       $result = $conn->query($query);
+      print_r($result);
       if ($result) {
         $item = $result->fetch_object();
         $item_price = $item->price;
@@ -95,7 +96,7 @@ function calculate_items($cart) {
   // sum total items in shopping cart
   $items = 0;
   if(is_array($cart))   {
-    foreach($cart as $isbn => $qty) {
+    foreach($cart as $items_id => $qty) {
       $items += $qty;
     }
   }

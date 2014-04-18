@@ -22,7 +22,7 @@
     display_button("admin.php", "admin-menu", "Admin Menu");
     display_button($target, "continue", "Continue");
   } else {
-    display_button("show_cart.php?new=".$isbn, "add-to-cart",
+    display_button("show_cart.php?new=".$items_id, "add-to-cart",
                    "Add".$item['title']." To My Shopping Cart");
     display_button($target, "continue-shopping", "Continue Shopping");
   }

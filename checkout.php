@@ -1,6 +1,6 @@
 <?php
   //include our function set
-  include ('book_sc_fns.php');
+  include ('item_sc_fns.php');
 
   // The shopping cart needs sessions, so start one
   session_start();
@@ -9,6 +9,7 @@
 
   if(($_SESSION['cart']) && (array_count_values($_SESSION['cart']))) {
     display_cart($_SESSION['cart'], false, 0);
+
     display_checkout_form();
   } else {
     echo "<p>There are no items in your cart</p>";

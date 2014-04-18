@@ -9,7 +9,9 @@ function process_card($card_details) {
 
 function insert_order($order_details) {
   // extract order_details out as variables
-  extract($order_details);
+  $hi = extract($order_details);
+
+  print_r($hi);
 
   // set shipping address same as address
   if((!$ship_name) && (!$ship_address) && (!$ship_city) && (!$ship_state) && (!$ship_zip) && (!$ship_country)) {
@@ -85,13 +87,13 @@ function insert_order($order_details) {
   }
 
   // insert each item
-  foreach($_SESSION['cart'] as $isbn => $quantity) {
-    $detail = get_item_details($isbn);
+  foreach($_SESSION['cart'] as $items_id => $quantity) {
+    $detail = get_item_details($items_id);
     $query = "delete from order_items where
-              orderid = '".$orderid."' and isbn = '".$isbn."'";
+              orderid = '".$orderid."' and items_id = '".$items_id."'";
     $result = $conn->query($query);
     $query = "insert into order_items values
-              ('".$orderid."', '".$isbn."', ".$detail['price'].", $quantity)";
+              ('".$orderid."', '".$items_id."', ".$detail['price'].", $quantity)";
     $result = $conn->query($query);
     if(!$result) {
       return false;

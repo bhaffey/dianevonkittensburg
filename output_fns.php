@@ -348,7 +348,8 @@ function display_cart($cart, $change = true, $images = 1) {
 
    echo "<table border=\"0\" width=\"100%\" cellspacing=\"0\">
          <form action=\"show_cart.php\" method=\"post\">
-         <tr><th colspan=\"".(1 + $images)."\" bgcolor=\"#cccccc\">Item</th>
+         <tr>
+         <th colspan=\"".(1 + $images)."\" bgcolor=\"#cccccc\">Item</th>
          <th bgcolor=\"#cccccc\">Price</th>
          <th bgcolor=\"#cccccc\">Quantity</th>
          <th bgcolor=\"#cccccc\">Total</th>
@@ -373,9 +374,9 @@ function display_cart($cart, $change = true, $images = 1) {
       }
       echo "</td>";
     }
-    echo "<td align=\"left\">
-          <a href=\"show_item.php?items=".$items."\">".$item['title']."</a>
-          by ".$item['author']."</td>
+    echo "<td align=\"center\">
+          <a href=\"show_item.php?items=".$items."\">".$item['name']."</a>
+          </td>
           <td align=\"center\">\$".number_format($item['price'], 2)."</td>
           <td align=\"center\">";
 
