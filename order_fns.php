@@ -45,6 +45,8 @@ function insert_order($order_details) {
             ('', '".$name."','".$address."','".$city."','".$state."','".$zip."','".$country."')";
     $result = $conn->query($query);
 
+    echo $result;
+
     if (!$result) {
        return false;
     }
@@ -92,7 +94,7 @@ function insert_order($order_details) {
     $query = "delete from order_items where
               orderid = '".$orderid."' and items_id = '".$items_id."'";
     $result = $conn->query($query);
-    $query = "insert into order_items values
+    $query = "insert into order_description values
               ('".$orderid."', '".$items_id."', ".$detail['price'].", $quantity)";
     $result = $conn->query($query);
     if(!$result) {
