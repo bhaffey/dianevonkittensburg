@@ -49,9 +49,9 @@ function do_html_header($title = '') {
         <a href="show_cat.php?catid=accessories"><img src="images/accessories.jpg"></img></a>   -->
         <ul>
         <li><a href="show_cat.php?catid=1">Sweaters</a></li>
-        <li><a href="show_cat.php?catid=2">Jackets</a></li>
+        <li><a href="show_cat.php?catid=3">Jackets</a></li>
         <a href="index.php"><img src="images/dvk.jpg"></img></a>
-        <li><a href="show_cat.php?catid=3">Harnesses</a></li>
+        <li><a href="show_cat.php?catid=2">Harnesses</a></li>
         <li><a href="show_cat.php?catid=4">Accessories</a></li>
   </div>
 
@@ -104,8 +104,10 @@ function do_html_URL($url, $name) {
   // output URL as link and br
 ?>
   <a href="<?php echo $url; ?>"><?php echo $name; ?></a><br />
+  <div id ="cattables">
 <?php
 }
+
 
 function display_categories($category_array) {
   if (!is_array($category_array)) {
@@ -123,6 +125,32 @@ function display_categories($category_array) {
   echo "</ul>";
   echo "<hr />";
 }
+
+/*
+
+function display_button($target, $image, $alt) {
+echo "<div align=\"center\"><a href=\"".$target."\">
+      <img src=\"images/".$image.".gif\"
+      alt=\"".$alt."\" border=\"0\" height=\"50\"
+      width=\"135\"/></a></div>";
+
+function display_categories($category_array) {
+  if (!is_array($category_array)) {
+     echo "<p>No categories currently available</p>";
+     return;
+  }
+  echo "<ul>";
+  foreach ($category_array as $row)  {
+    $url = "show_cat.php?catid=".$row['category'];
+    $title = $row['category'];
+    echo "<li>";
+    do_html_url($url, $title);
+    echo "</li>";
+  }
+  echo "</ul>";
+  echo "<hr />";
+} 
+*/
 
 function display_items($items_array) {
   //display all items in the array passed in
@@ -203,6 +231,9 @@ function display_item_details($item) {
 function display_checkout_form() {
   //display the form that asks for name and address
 ?>
+</div>
+
+
   <br />
   <table border="0" width="100%" cellspacing="0">
   <form action="purchase.php" method="post">

@@ -2,7 +2,7 @@
   include ('item_sc_fns.php');
   // The shopping cart needs sessions, so start one
   session_start();
-  do_html_header("Diane Von Kittensburg");
+  do_html_header("");
 
   echo "<p style=\"clear:both\">&nbsp;";
   echo "<img src=\"images/stockphoto.jpg\" height=\"600px\"></img>";
