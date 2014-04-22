@@ -17,6 +17,7 @@ function display_category_form($category = '') {
   // most of the form is in plain HTML with some
   // optional PHP bits throughout
 ?>
+ <div style="margin-left: 560px; ">
   <form method="post"
       action="<?php echo $edit ? 'edit_category.php' : 'insert_category.php'; ?>">
   <table border="0">
@@ -47,6 +48,7 @@ function display_category_form($category = '') {
      ?>
   </tr>
   </table>
+  </div>
 <?php
 }
 
@@ -67,23 +69,24 @@ function display_item_form($item = '') {
   // most of the form is in plain HTML with some
   // optional PHP bits throughout
 ?>
+  <div style="margin-left: 530px; ">
   <form method="post"
         action="<?php echo $edit ? 'edit_item.php' : 'insert_item.php';?>">
   <table border="0">
   <tr>
-    <td>ISBN:</td>
-    <td><input type="text" name="isbn"
+    <td>Items ID:</td>
+    <td><input type="text" name="items_id"
          value="<?php echo $edit ? $item['items_id'] : ''; ?>" /></td>
   </tr>
   <tr>
-    <td>item Title:</td>
+    <td>Item Name:</td>
     <td><input type="text" name="title"
-         value="<?php echo $edit ? $item['items_id'] : ''; ?>" /></td>
+         value="<?php echo $edit ? $item['name'] : ''; ?>" /></td>
   </tr>
   <tr>
-    <td>item Author:</td>
+    <td>Quantity:</td>
     <td><input type="text" name="author"
-         value="<?php echo $edit ? $item['items_id'] : ''; ?>" /></td>
+         value="<?php echo $edit ? $item['quantity'] : ''; ?>" /></td>
    </tr>
    <tr>
       <td>Category:</td>
@@ -117,7 +120,7 @@ function display_item_form($item = '') {
       <td <?php if (!$edit) { echo "colspan=2"; }?> align="center">
          <?php
             if ($edit)
-             // we need the old isbn to find item in database
+             // we need the old items_id to find item in database
              // if the isbn is being updated
              echo "<input type=\"hidden\" name=\"oldisbn\"
                     value=\"".$item['items_id']."\" />";
@@ -139,6 +142,7 @@ function display_item_form($item = '') {
       </tr>
   </table>
   </form>
+</div>
 <?php
 }
 

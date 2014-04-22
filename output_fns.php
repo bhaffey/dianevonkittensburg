@@ -225,7 +225,7 @@ function display_item_details($item) {
   } else {
     echo "<p>The details of this item cannot be displayed at this time.</p>";
   }
-  echo "<hr />";
+  //echo "<hr />";
 }
 
 function display_checkout_form() {
@@ -477,7 +477,7 @@ function display_admin_menu() {
 }
 
 function display_button($target, $image, $alt) {
-  echo "<div align=\"center\"><a href=\"".$target."\">
+  echo "<div align=\"center\" style=\"display: inline\"><a href=\"".$target."\">
           <img src=\"images/".$image.".gif\"
            alt=\"".$alt."\" border=\"0\" height=\"50\"
            width=\"135\"/></a></div>";
