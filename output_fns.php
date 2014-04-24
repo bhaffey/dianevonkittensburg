@@ -103,8 +103,8 @@ function do_html_heading($heading) {
 function do_html_URL($url, $name) {
   // output URL as link and br
 ?>
-  <a href="<?php echo $url; ?>"><?php echo $name; ?></a><br />
-  <div id ="cattables">
+  <td><center><a href="<?php echo $url; ?>"><?php echo $name; ?></a></center><br />
+  <!--<div id ="cattables">-->
 <?php
 }
 
@@ -160,12 +160,14 @@ function display_items($items_array) {
   else {
     //create table
     //create a table row for each item
+	echo "<div align=\"center\"><table width=\"100px\" border=\"0\">";
+	echo "<tr>";
     foreach ($items_array as $row) {
-      echo "<div align=\"center\"><table width=\"500px\" border=\"0\">";
+      //echo "<div align=\"center\"><table width=\"500px\" border=\"0\">";
       $url = "show_item.php?items_id=".$row['items_id'];
-
+	  //echo "<td>";
       //echo $row['name'];
-      echo "<tr><td style=\"font-size:20px; text-align: center\">";
+      echo "<td style=\"font-size:20px; text-align: center\">";
       //$title = "Name of Item ";
       $title = ucfirst($row['name']);
       do_html_url($url, $title);
@@ -173,9 +175,9 @@ function display_items($items_array) {
       echo "<img src=\"images/".$row['image_loc']."\"
               //style=\"border: 1px solid black; width: 150px; height: 150px\"/>";
       echo "</td>";
-      echo "</tr>";
+      //echo "</tr>";
 
-      echo "<tr><td style=\"text-align: center; padding: 10px\">";
+      echo "<td style=\"text-align: center; padding: 10px\">";
       if (@file_exists("images/".$row['category'].".jpg")) {
         
         //echo "<img src=\"images/".$row['image_loc']."\"
@@ -183,14 +185,15 @@ function display_items($items_array) {
         $title = "<img src=\"images/".$row['image_loc']."\"
                   style=\"border: 1px solid black\"/>";
         do_html_url($url, $title);
+	  echo "</td>";
       } else {
         echo "&nbsp;";
       }
-      echo "</td></tr>";
+      echo "</td>";
       
-          echo "</table></div>";
+          //echo "</table></div>";
     }
-
+	echo "</tr></table></div>";
   }
 
   echo "<p style=\"clear:both\">&nbsp;</p><hr />";
@@ -225,7 +228,7 @@ function display_item_details($item) {
   } else {
     echo "<p>The details of this item cannot be displayed at this time.</p>";
   }
-  //echo "<hr />";
+  echo "<hr />";
 }
 
 function display_checkout_form() {
@@ -477,7 +480,7 @@ function display_admin_menu() {
 }
 
 function display_button($target, $image, $alt) {
-  echo "<div align=\"center\" style=\"display: inline\"><a href=\"".$target."\">
+  echo "<div align=\"center\"><a href=\"".$target."\">
           <img src=\"images/".$image.".gif\"
            alt=\"".$alt."\" border=\"0\" height=\"50\"
            width=\"135\"/></a></div>";
