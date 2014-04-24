@@ -13,7 +13,7 @@
       $_SESSION['total_price'] ='0.00';
     }
 
-    if(isset($_SESSION['cart'][$new])) {
+    if(isset($_SESSION['cart'][$new])) { 
       $_SESSION['cart'][$new]++;
     } else {
       $_SESSION['cart'][$new] = 1;

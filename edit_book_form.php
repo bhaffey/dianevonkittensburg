@@ -1,12 +1,12 @@
 <?php
 
 // include function files for this application
-require_once('book_sc_fns.php');
+require_once('item_sc_fns.php');
 session_start();
 
-do_html_header("Edit book details");
+do_html_header("Edit item details");
 if (check_admin_user()) {
-  if ($book = get_book_details($_GET['isbn'])) {
+  if ($book = get_item_details($_GET['items_id'])) {
     display_book_form($book);
   } else {
     echo "<p>Could not retrieve book details.</p>";

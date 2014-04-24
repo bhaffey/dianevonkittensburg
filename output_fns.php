@@ -480,14 +480,14 @@ function display_admin_menu() {
 }
 
 function display_button($target, $image, $alt) {
-  echo "<div align=\"center\"><a href=\"".$target."\">
+  echo "<div><a href=\"".$target."\">
           <img src=\"images/".$image.".gif\"
            alt=\"".$alt."\" border=\"0\" height=\"50\"
            width=\"135\"/></a></div>";
 }
 
 function display_form_button($image, $alt) {
-  echo "<div align=\"center\"><input type=\"image\"
+  echo "<div><input type=\"image\"
            src=\"images/".$image.".gif\"
            alt=\"".$alt."\" border=\"0\" height=\"50\"
            width=\"135\"/></div>";

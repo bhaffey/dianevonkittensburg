@@ -17,7 +17,7 @@
   if (($_SESSION['cart']) && ($name) && ($address) && ($city) && ($zip) && ($country)) {
     // able to insert into database
     if(insert_order($_POST) != false ) {
-      //display cart, not allowing changes and without pictures
+      //display cart, not allowing changes and without pictures 
       display_cart($_SESSION['cart'], false, 0);
 
       //display_shipping(calculate_shipping_cost());

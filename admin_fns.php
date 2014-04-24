@@ -174,16 +174,16 @@ function insert_category($catname) {
    $conn = db_connect();
 
    // check category does not already exist
-   $query = "select category
-             from items
-             where category='".$catname."'";
+   $query = "select catname
+             from categories
+             where catname='".$catname."'";
    $result = $conn->query($query);
    if ((!$result) || ($result->num_rows!=0)) {
      return false;
    }
 
    // insert new category
-   $query = "insert into items values
+   $query = "insert into categories values
             ('', '".$catname."')";
    $result = $conn->query($query);
    if (!$result) {
@@ -193,7 +193,7 @@ function insert_category($catname) {
    }
 }
 
-function insert_item($items_id, $quantity, $category, $description, $size, $image_loc, $price, $name) {
+function insert_item($items_id, $quantity, $cat_id, $description, $size, $image_loc, $name, $price) {
 // insert a new item into the database
 
    $conn = db_connect();
@@ -210,9 +210,9 @@ function insert_item($items_id, $quantity, $category, $description, $size, $imag
 
    // insert new item
    $query = "insert into items values
-            ('".$items_id."', '".$quantity."', '".$category."',
+            ('".$items_id."', '".$quantity."', '".$cat_id."',
              '".$description."', '".$size."', '".$image_loc."',
-             '".$price."', '".$name."')";
+             '".$name."', '".$price."')";
 
    $result = $conn->query($query);
    if (!$result) {
