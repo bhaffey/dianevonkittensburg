@@ -8,6 +8,9 @@
   echo "<img src=\"images/stockphoto.jpg\" height=\"600px\"></img>";
   echo "</p>";
 
+  echo '<p>10% of the proceeds from all sales go to <a href="http://www.ny-petrescue.org/">New York Pet Rescue</a></p>
+<hr>';
+
   //echo "<p>Please choose a category:</p>";
 
   // get categories out of database

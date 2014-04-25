@@ -91,6 +91,10 @@ function do_html_header($title = '') {
 function do_html_footer() {
   // print an HTML footer
 ?>
+
+<p style="font-size: 20px; display: inline; text-transform:uppercase;"><strong>Diane Von Kittensberg</strong><br>
+                                            200 Park Avenue, 16th Floor<br>New York, NY  10042</p>
+  <p>&nbsp;</p>                                          
   </body>
   </html>
 <?php
