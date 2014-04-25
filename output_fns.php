@@ -15,6 +15,20 @@ function do_html_header($title = '') {
 <head>
   <title style=\"font-family: Helvetica, Arial, sans-serif;\">Diane Von Kittensberg</title>
   <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript">
+
+  function checkShippingSelection(x) {
+    var ship = x;
+    alert(ship);
+          <?php 
+             $shipping = ship; 
+             $_SESSION['total_price'] = ship+$_SESSION['total_price'];
+          ?>
+  }
+  
+  </script>
+
 </head>
 
 <body>
@@ -238,8 +252,26 @@ function display_checkout_form() {
 
 
   <br />
-  <table border="0" width="100%" cellspacing="0">
-  <form action="purchase.php" method="post">
+    <form action="purchase.php" method="post">
+    <table border="0" width="100%" cellspacing="0">
+  <tr><td align="left">Shipping Options</td>
+      <td align="right"> <p>
+            <input type="radio" name="shipping" id="USPS" value=4.95 onclick="checkShippingSelection(4.95)">USPS Priority Mail: $4.95</input><br>
+            <input type="radio" name="shipping" id="UPS" value=12.95 onclick="checkShippingSelection(12.95)">UPS 2 Day Air: $12.95</input><br>
+            <input type="radio" name="shipping" id="FedEx" value=13.95onclick="checkShippingSelection(13.95)">Fed Ex 2 Day Air: $13.95</input><br>
+      </p></td>
+  </tr>
+  <tr><th bgcolor="#cccccc" align="left">SUBTOTAL (not including Shipping)</th>
+      <th bgcolor="#cccccc" align="right">$ 
+        <?php 
+
+        echo number_format($_SESSION['total_price'], 2); 
+        //$_SESSION['total_price'] = $shipping+$_SESSION['total_price'];
+        //$_SESSION['total_price'] = 92;
+        ?>
+      </th>
+  </tr>
+
   <tr><th colspan="2" bgcolor="#cccccc">Your Details</th></tr>
   <tr>
     <td>Name</td>
@@ -309,6 +341,22 @@ function display_shipping($shipping) {
       <td align="right"> <?php echo number_format($shipping, 2); ?></td></tr>
   <tr><th bgcolor="#cccccc" align="left">TOTAL INCLUDING SHIPPING</th>
       <th bgcolor="#cccccc" align="right">$ <?php echo number_format($shipping+$_SESSION['total_price'], 2); ?></th>
+  </tr>
+  </table><br />
+<?php
+}
+
+
+function display_total_inclshipping ($shipping) {
+  // display table row with shipping cost and total price including shipping
+?>
+  <table border="0" width="100%" cellspacing="0">
+  <tr><td align="left" style="padding-left: 150px; font-size: 18px; color: red; font-weight: bolder">Shipping</td>
+      <td align="right" style="padding-right: 120px;"> <?php echo number_format($shipping, 2);
+                               $_SESSION['total_price'] = $_SESSION['total_price'] + $shipping;
+                          ?></td></tr>
+  <tr><th bgcolor="#cccccc" align="left" style="padding-left: 150px; font-size: 18px; color: red">TOTAL INCLUDING SHIPPING</th>
+      <th bgcolor="#cccccc" align="right" style="padding-right: 120px; font-size: 18px; color: red">$ <?php echo number_format($_SESSION['total_price'], 2); ?></th>
   </tr>
   </table><br />
 <?php

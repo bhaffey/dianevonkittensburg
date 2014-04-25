@@ -9,9 +9,7 @@ function process_card($card_details) {
 
 function insert_order($order_details) {
   // extract order_details out as variables
-  $hi = extract($order_details);
-
-  print_r($hi);
+  extract($order_details);
 
   // set shipping address same as address
   if((!$ship_name) && (!$ship_address) && (!$ship_city) && (!$ship_state) && (!$ship_zip) && (!$ship_country)) {
@@ -36,6 +34,8 @@ function insert_order($order_details) {
             and zip = '".$zip."' and country = '".$country."'";
 
   $result = $conn->query($query);
+
+  //print_r($result);
 
   if($result->num_rows>0) {
     $customer = $result->fetch_object();

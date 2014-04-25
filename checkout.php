@@ -9,7 +9,7 @@
 
   if(($_SESSION['cart']) && (array_count_values($_SESSION['cart']))) {
     display_cart($_SESSION['cart'], false, 0);
-    display_shipping(20);
+    //display_shipping(20);
     display_checkout_form();
   } 
   else {

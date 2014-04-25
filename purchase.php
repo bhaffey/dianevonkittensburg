@@ -7,6 +7,7 @@
   do_html_header("Checkout");
 
   // create short variable names
+  $shipping = $_POST['shipping'];
   $name = $_POST['name'];
   $address = $_POST['address'];
   $city = $_POST['city'];
@@ -21,7 +22,8 @@
       display_cart($_SESSION['cart'], false, 0);
 
       //display_shipping(calculate_shipping_cost());
-      display_shipping(20);
+      //display_shipping(20);
+      display_total_inclshipping($shipping);
 
       //get credit card details
       display_card_form($name);
