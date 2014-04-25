@@ -41,7 +41,7 @@
   if(($_SESSION['cart']) && (array_count_values($_SESSION['cart']))) {
     display_cart($_SESSION['cart']);
   } else {
-    echo "<p>There are no items in your cart</p><hr/>";
+    echo "<p>There are no items in your cart.</p><hr/>";
   }
 
   $target = "index.php";
