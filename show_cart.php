@@ -53,7 +53,11 @@
       $target = "show_cat.php?catid=".$details['catid'];
     }
   }
+
+  echo "<div id=\"lowernavbar\">";
+  echo "<ul><li>";
   display_button($target, "continue-shopping", "Continue Shopping");
+  echo "</li>";
 
   // use this if SSL is set up
   // $path = $_SERVER['PHP_SELF'];
@@ -63,7 +67,10 @@
   //                 "go-to-checkout", "Go To Checkout");
 
   // if no SSL use below code
+   echo "<li>";
   display_button("checkout.php", "go-to-checkout", "Go To Checkout");
+   echo "</li><ul>";
+  echo "</div>";
 
   do_html_footer();
 ?>

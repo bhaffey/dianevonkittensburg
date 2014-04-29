@@ -5,19 +5,10 @@
   do_html_header("");
 
   echo "<p style=\"clear:both\">&nbsp;";
-  echo "<img src=\"images/stockphoto.jpg\" height=\"600px\"></img>";
+  echo "<img src=\"images/stockphoto.jpg\" height=\"400px\"></img>";
   echo "</p>";
 
-  echo '<p>10% of the proceeds from all sales go to <a href="http://www.ny-petrescue.org/">New York Pet Rescue</a></p>
-<hr>';
-
-  //echo "<p>Please choose a category:</p>";
-
-  // get categories out of database
-  $category_array = get_categories();
-
-  // display as links to cat pages
-  //display_categories($category_array);
+  //echo '<p>10% of the proceeds from all sales go to <a href="http://www.ny-petrescue.org/">New York Pet Rescue</a></p>';
 
   // if logged in as admin, show add, delete, edit cat links
   if(isset($_SESSION['admin_user'])) {
