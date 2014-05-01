@@ -20,7 +20,7 @@ function display_category_form($category = '') {
  <div style="margin-left: 560px; ">
   <form method="post"
       action="<?php echo $edit ? 'edit_category.php' : 'insert_category.php'; ?>">
-  <table border="0">
+  <table border="0" cellspacing="8">
   <tr>
     <td>Category Name:</td>
     <td><input type="text" name="catname" size="40" maxlength="40"
@@ -72,7 +72,7 @@ function display_item_form($item = '') {
   <div style="margin-left: 530px; ">
   <form method="post"
         action="<?php echo $edit ? 'edit_item.php' : 'insert_item.php';?>">
-  <table border="0">
+  <table border="0" cellspacing="8">
   <tr>
     <td>Items ID:</td>
     <td><input type="text" name="items_id"
@@ -85,7 +85,7 @@ function display_item_form($item = '') {
   </tr>
   <tr>
     <td>Quantity:</td>
-    <td><input type="text" name="author"
+    <td><input type="text" name="quantity"
          value="<?php echo $edit ? $item['quantity'] : ''; ?>" /></td>
    </tr>
    <tr>
@@ -151,7 +151,7 @@ function display_password_form() {
 ?>
    <br />
    <form action="change_password.php" method="post">
-   <table width="250" cellpadding="2" cellspacing="0" bgcolor="#cccccc">
+   <table align="center" width="250" cellpadding="2" cellspacing="8" bgcolor="#cccccc">
    <tr><td>Old password:</td>
        <td><input type="password" name="old_passwd" size="16" maxlength="16" /></td>
    </tr>
@@ -307,5 +307,6 @@ function delete_item($items_id) {
      return true;
    }
 }
+
 
 ?>

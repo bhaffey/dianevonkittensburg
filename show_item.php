@@ -9,8 +9,8 @@
   $item = get_item_details($items_id);
   do_html_header($item['name']);
 
-  display_button("show_cart.php?new=".$items_id, "add-to-cart",
-                   "Add".$item['title']." To My Shopping Cart");
+  //display_button("show_cart.php?new=".$items_id, "add-to-cart",
+     //              "Add".$item['title']." To My Shopping Cart");
 
   display_item_details($item);
 
@@ -26,9 +26,8 @@
     display_button("admin.php", "admin-menu", "Admin Menu");
     display_button($target, "continue", "Continue");
   } else {
-    echo "<div align=\"center\" style=\"width: 400px; text-align: center; display: inline\">";
-
-
+    display_button("show_cart.php?new=".$items_id, "add-to-cart",
+                   "Add".$item['title']." To My Shopping Cart");
     display_button($target, "continue-shopping", "Continue Shopping");
     echo "<p>&nbsp;</p></div>";
   }

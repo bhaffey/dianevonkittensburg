@@ -5,5 +5,7 @@
   include_once('item_fns.php');
   include_once('user_auth_fns.php');
   include_once('admin_fns.php');
+  include_once('worker_fns.php');
+  include_once('new_user_fns.php');
   include_once('order_fns.php');
 ?>

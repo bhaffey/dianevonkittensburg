@@ -2,6 +2,7 @@
 
 function db_connect() {
    $result = new mysqli('localhost', 'haffey', 'is667', 'pets');
+   //$result = new mysqli('localhost', 'root', '', 'pets');
    if (!$result) {
       return false;
    }

@@ -26,7 +26,7 @@ if (($_POST['username']) && ($_POST['passwd'])) {
     }
 }
 
-do_html_header("Administration");
+do_html_header("Administrator Menu");
 if (check_admin_user()) {
   display_admin_menu();
 } else {

@@ -19,6 +19,7 @@
     // able to insert into database
     if(insert_order($_POST) != false ) {
       //display cart, not allowing changes and without pictures 
+      echo '<p>&nbsp;</p>';
       display_cart($_SESSION['cart'], false, 0);
 
       //display_shipping(calculate_shipping_cost());
@@ -38,5 +39,5 @@
     display_button('checkout.php', 'back', 'Back');
   }
 
-  do_html_footer();
+  //do_html_footer();
 ?>

@@ -1,7 +1,6 @@
 <?php
 
 function do_html_header($title = '') {
-
   // declare the session variables we want access to inside the function
   if (!$_SESSION['items']) {
     $_SESSION['items'] = '0';
@@ -10,13 +9,12 @@ function do_html_header($title = '') {
     $_SESSION['total_price'] = '0.00';
   }
 ?>
- <!doctype html>
+ <!--<!doctype html>-->
   <html>
 
 <head>
   <title style=\"font-family: Helvetica, Arial, sans-serif;\">Diane Von Kittensberg</title>
   <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
-
 </head>
 
 <body>
@@ -27,26 +25,28 @@ function do_html_header($title = '') {
 
   <div class="navbar">
     <div id="navbehind">
-        <a href="www.facebook.com"><img src="images/facebook.jpg"></img></a>
-        <a href="www.twitter.com"><img src="images/twitter.jpg"></img></a>
-        <a href="www.instagram.com"><img src="images/instagram.jpg"></img></a>
-        <a href="www.pinterest.com"><img src="images/pinterest.jpg"></img></a>    
+        <a href="http://www.facebook.com" target="_blank"><img src="images/facebook.jpg" border="0"></img></a>
+        <a href="http://www.twitter.com" target="_blank"><img src="images/twitter.jpg" border="0"></img></a>
+        <a href="http://www.instagram.com" target="_blank"><img src="images/instagram.jpg" border="0"></img></a>
+        <a href="http://www.pinterest.com" target="_blank"><img src="images/pinterest.jpg" border="0"></img></a>    
           <img src="images/space.jpg"></img>
-        <a href="login.php"><img src="images/signin.jpg"></img></a>
-        <a href="show_cart.php"><img src="images/shoppingbag.jpg"></img></a>
+        <a href="login.php"><img src="images/signin.jpg" border="0"></img></a>
+        <a href="show_cart.php"><img src="images/shoppingbag.jpg" border="0"></img></a>
     </div>
 
 <?php
-     if(isset($_SESSION['admin_user'])) {
+     if(isset($_SESSION['admin_user'])||isset($_SESSION['worker_user'])||isset($_SESSION['customer_user'])) {
+       echo "<div class='floatleft'>";
        display_button('logout.php', 'log-out', 'Log Out');
+       echo "</div>";
      } 
   ?>
 
   </div>
 
-<!--Old Static Menu -->
-  <!--<div id="navbar"> -->
-        <!--<a href="show_cat.php?catid=sweaters"><img src="images/sweaters.jpg"></img></a>
+
+  <!--<div id="navbar"> 
+        <a href="show_cat.php?catid=sweaters"><img src="images/sweaters.jpg"></img></a>
         <a href="show_cat.php?catid=jackets"><img src="images/jackets.jpg"></img></a>
         <a href="index.php"><img src="images/dvk.jpg"></img></a> 
         <a href="show_cat.php?catid=harnesses"><img src="images/harnesses.jpg"></img></a>
@@ -59,6 +59,7 @@ function do_html_header($title = '') {
         <li><a href="show_cat.php?catid=4">Accessories</a></li>
 
   </div>-->
+
 <?php
     // get categories out of database
   $category_array = get_categories();
@@ -68,7 +69,7 @@ function do_html_header($title = '') {
 ?>
 
 </div>
-</div>
+</div> 
 
 
   <?php
@@ -107,7 +108,8 @@ function do_html_footer() {
 
 <div id="footer">
 <p style="font-size: 20px; display: inline; text-transform:uppercase;"><strong>Diane Von Kittensberg</strong><br>
-                                            200 Park Avenue, 16th Floor<br>New York, NY  10042</p>                                     
+                                            200 Park Avenue, 16th Floor<br>New York, NY  10042</p>    
+                                            <p>&nbsp;</p>                                 
   </html>
 <?php
 }
@@ -166,8 +168,9 @@ function display_items($items_array) {
       $title = ucfirst($row['name']);
       do_html_url($url, $title);
       //print_r($row['image_loc']);
+      echo "<a href='$url'>"; 
       echo "<img src=\"images/".$row['image_loc']."\"
-              //style=\"border: 1px solid black; width: 150px; height: 150px\"/>";
+              //style=\"border: 1px solid black; width: 150px; height: 150px\"/></a>";
       echo "</td>";
       //echo "</tr>";
 
@@ -200,10 +203,10 @@ function display_item_details($item) {
     echo "<table style=\"padding-left: 120px; padding-top: 20px; padding-bottom: 20px; font-size: 20px\"><tr>";
    
     echo "<td style=\"padding-left: 220px;\"><img src=\"images/".$item['image_loc']."\"
-              style=\"border: 1px solid black; width: 400px; height: 400px\"/></td>
+              style=\"border: 1px solid black; width: 300px; height: 300px\"/></td>
               <td>";
 
-        echo "<table style=\"text-align: left; padding-left: 20px; width: 600px\">";
+        echo "<table cellspacing=\"2\" cellpadding=\"5\" style=\"text-align: left; padding-left: 20px; width: 600px; \">";
         echo "<tr><td><strong>Name:</strong></td>";
         echo "<td style=\"padding-left: 35px\">".$item['name']."</td></tr>";
 
@@ -213,28 +216,32 @@ function display_item_details($item) {
 
         echo "<tr><td>";
         echo "<strong>Size:</strong></td> ";
-        echo "<td style=\"padding-left: 35px\"><select>";
-          echo "<option value=\"X-Small\">X-Small</option>";
-          echo "<option value=\"Small\">Small</option>";
-          echo "<option value=\"Medium\">Medium</option>";
-          echo "<option value=\"Large\">Large</option>";
-        echo "</select></td></tr>";
+        
+        //User Input Option for Size
+        //echo "<td style=\"padding-left: 35px\"><select>";
+          //echo "<option value=\"X-Small\">X-Small</option>";
+          //echo "<option value=\"Small\">Small</option>";
+          //echo "<option value=\"Medium\">Medium</option>";
+          //echo "<option value=\"Large\">Large</option>";
+        //echo "</select></td></tr>";
 
-        //echo "<td style=\"padding-left: 35px\">".$item['size']."</td></tr>";
+        //Only one size available
+        echo "<td style=\"padding-left: 35px\">".$item['size']."</td></tr>";
 
         echo "<tr><td>";
         echo "<strong>Our Price: </strong></td> ";
         echo "<td style=\"padding-left: 35px\">$".$item['price']."</td></tr>";
 
-        echo "<tr><td>";
-        echo "<strong>Quantity:</strong></td> ";
-        echo "<td style=\"padding-left: 35px\"><select>";
-          echo "<option value=1>1</option>";
-          echo "<option value=2>2</option>";
-          echo "<option value=3>3</option>";
-          echo "<option value=4>4</option>";
-        echo "</select></td></tr>";
-
+       //Quantity
+        //echo "<tr><td>";
+        //echo "<strong>Quantity:</strong></td> ";
+        //User Input Option for Size
+        //echo "<td style=\"padding-left: 35px\"><select>";
+          //echo "<option value=1>1</option>";
+          //echo "<option value=2>2</option>";
+          //echo "<option value=3>3</option>";
+          //echo "<option value=4>4</option>";
+        //echo "</select></td></tr>";
 
         //echo "<td style=\"padding-left: 35px\">".$item['quantity']."</td></tr>"; 
 
@@ -332,7 +339,7 @@ function display_checkout_form() {
     </td>
   </tr>
   </form>
-  </table>
+  </table><hr />
 <?php
 }
 
@@ -356,10 +363,10 @@ function display_total_inclshipping ($shipping) {
   <table border="0" width="800px" cellspacing="0" align="center">
   <tr><td align="left" style="padding-left: 150px; font-size: 18px; color: red; font-weight: bolder">Shipping</td>
       <td align="right" style="padding-right: 120px;"> <?php echo number_format($shipping, 2);
-                               $_SESSION['total_price'] = $_SESSION['total_price'] + $shipping;
+                               $totalWithShipping = $_SESSION['total_price'] + $shipping;
                           ?></td></tr>
   <tr><th bgcolor="#cccccc" align="left" style="padding-left: 150px; font-size: 18px; color: red">TOTAL INCLUDING SHIPPING</th>
-      <th bgcolor="#cccccc" align="right" style="padding-right: 120px; font-size: 18px; color: red">$ <?php echo number_format($_SESSION['total_price'], 2); ?></th>
+      <th bgcolor="#cccccc" align="right" style="padding-right: 120px; font-size: 18px; color: red">$ <?php echo number_format($totalWithShipping, 2); ?></th>
   </tr>
   </table><br />
 <?php
@@ -449,14 +456,14 @@ function display_cart($cart, $change = true, $images = 1) {
     $item = get_item_details($items);
     echo "<tr>";
       echo "<td align=\"right\">";
-      echo "<a href=\"show_item.php?items=".$items."\">";
+      echo "<a href=\"show_item.php?items_id=".$items."\">";
            echo "<img src=\"images/".$item['image_loc']."\"
                   style=\"border: 1px solid black\"
                   width=\"100px\"
                   height=\"100px\"/></a>";
       echo "</td>";
     echo "<td align=\"left\">
-          <a href=\"show_item.php?items=".$items."\">".$item['name']."</a>
+          <a href=\"show_item.php?items_id=".$items."\">".$item['name']."</a>
           </td>
           <td align=\"left\">\$".number_format($item['price'], 2)."</td>
           <td align=\"left\">";
@@ -497,8 +504,8 @@ function display_cart($cart, $change = true, $images = 1) {
 function display_login_form() {
   // dispaly form asking for name and password
 ?>
- <form method="post" action="admin.php">
- <table bgcolor="#cccccc">
+ <form method="post" action="user_type.php">
+ <table bgcolor="#cccccc" align="center" cellpadding='2' cellspacing="8">
    <tr>
      <td>Username:</td>
      <td><input type="text" name="username"/></td></tr>
@@ -509,17 +516,76 @@ function display_login_form() {
      <td colspan="2" align="center">
      <input type="submit" value="Log in"/></td></tr>
    <tr>
- </table></form>
+  </table>
+
+ <div id="navbar_user">
+    <p style="text-transform:capitalize; font-style:italic">Not yet a member?</p>
+  <ul>
+    <li>
+        <a href="new_user.php">Register</a> 
+      </li>
+    </ul>
+  </div>
+
+ </form>
 <?php
 }
 
 function display_admin_menu() {
 ?>
+<div id="navbar_user">
+  <ul>
+    <li>
+        <a href="index.php">Go to main site</a>
+      </li>
+      <li>
+<a href="insert_category_form.php">Add a new category</a>
+      </li>
+      <li>
+<a href="insert_item_form.php">Add a new item</a>
+      </li>
+      <li>
+<a href="change_password_form.php">Change password</a>
+      </li>
+    </ul>
+  </div>
 <br />
-<a href="index.php">Go to main site</a><br />
+<!--<a href="index.php">Go to main site</a><br />
 <a href="insert_category_form.php">Add a new category</a><br />
 <a href="insert_item_form.php">Add a new item</a><br />
-<a href="change_password_form.php">Change admin password</a><br />
+<a href="change_password_form.php">Change password</a><br />-->
+<?php
+}
+
+function display_worker_menu() {
+?>
+<div id="navbar_user">
+  <ul>
+    <li>
+<a href="index.php">Go to main site</a>
+</li>
+      <li>
+<a href="select_item.php">Edit an item</a>
+</li>
+      <li>
+<a href="change_password_form.php">Change password</a>
+      <li>
+        <ul>
+        </div>
+<?php
+}
+
+function display_customer_menu() {
+?>
+<div id="navbar_user">
+  <ul>
+    <li>
+<a href="index.php">Go to main site</a></li>
+<h3>Select a category from the menu</h3>
+<li><a href="change_password_form.php">Change password</a></li>
+      <li>
+        <ul>
+        </div>
 <?php
 }
 

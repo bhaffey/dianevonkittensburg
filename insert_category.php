@@ -4,6 +4,7 @@
 require_once('item_sc_fns.php');
 session_start();
 
+
 do_html_header("Adding a category");
 if (check_admin_user()) {
   if (filled_out($_POST))   {
@@ -16,7 +17,7 @@ if (check_admin_user()) {
   } else {
     echo "<p>You have not filled out the form.  Please try again.</p>";
   }
-  do_html_url('admin.php', 'Back to administration menu');
+  do_html_url('user_type.php', 'Back to menu');
 } else {
   echo "<p>You are not authorized to view this page.</p>";
 }

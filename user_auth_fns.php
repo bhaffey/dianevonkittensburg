@@ -1,6 +1,7 @@
 <?php
 
 require_once('db_fns.php');
+session_start();
 
 function login($username, $password) {
 // check username and password with db
@@ -14,17 +15,21 @@ function login($username, $password) {
   }
 
   // check if username is unique
-  $result = $conn->query("select * from admin
+  $result = $conn->query("select usertype from login_info
                          where username='".$username."'
-                         and password = sha1('".$password."')");
+                         and password = '".$password."'");
+						 
   if (!$result) {
      return 0;
   }
 
-  if ($result->num_rows>0) {
-     return 1;
+if ($result->num_rows>0) {
+		$_SESSION['username'] = $username;
+		$_SESSION['password'] = $password;
+	 foreach( $result as $row ) 
+		return $row['usertype'];
   } else {
-     return 0;
+     return "";
   }
 }
 
@@ -37,6 +42,27 @@ function check_admin_user() {
     return false;
   }
 }
+
+function check_worker() {
+// see if somebody is logged in and notify them if not
+
+  if (isset($_SESSION['worker_user'])) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function check_customer() {
+// see if somebody is logged in and notify them if not
+
+  if (isset($_SESSION['customer_user'])) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 
 function change_password($username, $old_password, $new_password) {
 // change password for username/old_password to new_password
@@ -51,16 +77,23 @@ function change_password($username, $old_password, $new_password) {
       return false;
     }
 
-    $result = $conn->query("update admin
-                            set password = sha1('".$new_password."')
-                            where username = '".$username."'");
-    if (!$result) {
+    $result = $conn->query("update login_info
+                            set password = '".$new_password."'
+                            where username = '".$username."' and
+								  password = '".$old_password."'");
+     if (!$result) {
+	  $_SESSION['username'] = $username;
+	  $_SESSION['password'] = $old_password;
       return false;  // not changed
     } else {
-      return true;  // changed successfully
+	  $_SESSION['username'] = $username;
+	  $_SESSION['password'] = $new_password;
+	  return true;  // changed successfully
     }
   } else {
-    return false; // old password was wrong
+	  $_SESSION['username'] = $username;
+	  $_SESSION['password'] = $old_password;
+	  return false; // old password was wrong
   }
 }
 
