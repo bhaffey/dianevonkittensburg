@@ -7,7 +7,7 @@
 
   do_html_header("Checkout");
 
-  echo "<p>hi</p>";
+  //echo "<p>hi</p>";
 
   if(($_SESSION['cart']) && (array_count_values($_SESSION['cart']))) {
     display_cart($_SESSION['cart'], false, 0);
