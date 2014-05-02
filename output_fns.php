@@ -259,30 +259,34 @@ function display_checkout_form() {
   //display the form that asks for name and address
 ?>
 </div>
-
-
   <br />
     <form action="purchase.php" method="post">
     <table border="0" width="100%" cellspacing="0">
-  <tr><td align="left">Shipping Options</td>
-      <td align="right"> <p>
+    <tr>
+      <td align="left">Shipping Options</td>
+      <td align="right"> 
+        <p>
             <input type="radio" name="shipping" id="USPS" value=4.95 >USPS Priority Mail: $4.95</input><br>
             <input type="radio" name="shipping" id="UPS" value=12.95>UPS 2 Day Air: $12.95</input><br>
             <input type="radio" name="shipping" id="FedEx" value=13.95>Fed Ex 2 Day Air: $13.95</input><br>
-      </p></td>
-  </tr>
-  <tr><th bgcolor="#cccccc" align="left">SUBTOTAL (not including Shipping)</th>
-      <th bgcolor="#cccccc" align="right">$ 
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td bgcolor="#cccccc" align="left">SUBTOTAL (not including Shipping)</td>
+      <td bgcolor="#cccccc" align="right">$ 
         <?php 
 
         echo number_format($_SESSION['total_price'], 2); 
         //$_SESSION['total_price'] = $shipping+$_SESSION['total_price'];
         //$_SESSION['total_price'] = 92;
         ?>
-      </th>
+      </td>
   </tr>
 
-  <tr><th colspan="2" bgcolor="#cccccc">Your Details</th></tr>
+  <tr>
+    <td colspan="2" bgcolor="#cccccc">Your Details</th>
+  </tr>
   <tr>
     <td>Name</td>
     <td><input type="text" name="name" value="" maxlength="40" size="40"/></td>
@@ -444,27 +448,32 @@ function display_cart($cart, $change = true, $images = 1) {
 
    echo "<table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"8px\">
          <form action=\"show_cart.php\" method=\"post\">
-         <tr>
-         <th colspan=\"".(1 + $images)."\" bgcolor=\"#cccccc\">Item</th>
-         <th style=\"text-align: left\" bgcolor=\"#cccccc\">Price</th>
-         <th style=\"text-align: left\" bgcolor=\"#cccccc\">Quantity</th>
-         <th style=\"text-align: left\" bgcolor=\"#cccccc\">Total</th>
+         <tr >
+           <th style=\"text-align: center\" bgcolor=\"#cccccc\">Item</th>
+           <th style=\"text-align: left\" bgcolor=\"#cccccc\">Price</th>
+           <th style=\"text-align: left\" bgcolor=\"#cccccc\">Quantity</th>
+           <th style=\"text-align: left\" bgcolor=\"#cccccc\">Total</th>
          </tr>";
 
   //display each item as a table row
   foreach ($cart as $items => $qty)  {
     $item = get_item_details($items);
     echo "<tr>";
-      echo "<td align=\"right\">";
-      echo "<a href=\"show_item.php?items_id=".$items."\">";
-           echo "<img src=\"images/".$item['image_loc']."\"
+    echo "<td>";
+          echo "<table border=\"0\" width=\"400px\" style=\"margin-left: 200px; text-align: left\">
+                <tr>
+                <td>";
+          echo "<a href=\"show_item.php?items_id=".$items."\">";
+          echo "<img src=\"images/".$item['image_loc']."\"
                   style=\"border: 1px solid black\"
                   width=\"100px\"
-                  height=\"100px\"/></a>";
-      echo "</td>";
-    echo "<td align=\"left\">
-          <a href=\"show_item.php?items_id=".$items."\">".$item['name']."</a>
-          </td>
+                  height=\"100px\"/></a></td>";
+            
+          echo "<td style=\"padding-left: 90px; padding-right: 200px\"><p style=\"vertical-align: center\">
+                <a href=\"show_item.php?items_id=".$items."\">".$item['name']."</a></p>
+                </td>
+                </tr>
+            </table>
           <td align=\"left\">\$".number_format($item['price'], 2)."</td>
           <td align=\"left\">";
 

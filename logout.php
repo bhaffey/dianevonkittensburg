@@ -22,7 +22,7 @@ if (!empty($old_user)) {
 } else {
   // if they weren't logged in but came to this page somehow
   echo "<p>You were not logged in, and so have not been logged out.</p>";
-    echo '<div id="navbar">
+    echo '<div id="navbar_user">
   <ul>
     <li>
         <a href="login.php">Login</a> 
