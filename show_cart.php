@@ -5,6 +5,8 @@
 
   @$new = $_GET['new'];
 
+  echo $_GET['new'];
+
   if($new) {
     //new item selected
     if(!isset($_SESSION['cart'])) {
