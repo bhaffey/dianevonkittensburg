@@ -549,6 +549,9 @@ function display_admin_menu() {
       <li>
 <a href="change_password_form.php">Change password</a>
       </li>
+      <li>
+        <a href="logout.php">Logout</a>
+      </li>
     </ul>
   </div>
 <br />
@@ -572,6 +575,9 @@ function display_worker_menu() {
       <li>
 <a href="change_password_form.php">Change password</a>
       <li>
+         <li>
+        <a href="logout.php">Logout</a>
+      </li>
         <ul>
         </div>
 <?php
@@ -585,7 +591,9 @@ function display_customer_menu() {
 <a href="index.php">Go to main site</a></li>
 <h3>Select a category from the menu</h3>
 <li><a href="change_password_form.php">Change password</a></li>
-      <li>
+       <li>
+        <a href="logout.php">Logout</a>
+      </li>
         <ul>
         </div>
 <?php
