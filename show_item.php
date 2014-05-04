@@ -22,7 +22,6 @@
 
   // if logged in as admin, show edit item links
   if(check_admin_user()) {
-    display_button("edit_item_form.php?items_id=".$items_id, "edit-item", "Edit Item");
     display_button("admin.php", "admin-menu", "Admin Menu");
     display_button($target, "continue", "Continue");
   } else {

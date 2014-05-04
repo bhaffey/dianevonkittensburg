@@ -228,7 +228,7 @@ function update_category($catid, $catname) {
 
    $conn = db_connect();
 
-   $query = "update items
+   $query = "update categories
              set category='".$catname."'
              where catid='".$catid."'";
    $result = @$conn->query($query);
