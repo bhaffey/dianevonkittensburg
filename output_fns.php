@@ -574,8 +574,8 @@ function display_worker_menu() {
 </li>
       <li>
 <a href="change_password_form.php">Change password</a>
+      </li>
       <li>
-         <li>
         <a href="logout.php">Logout</a>
       </li>
         <ul>
