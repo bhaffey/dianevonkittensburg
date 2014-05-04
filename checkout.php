@@ -10,9 +10,7 @@
   //echo "<p>hi</p>";
 
   if(($_SESSION['cart']) && (array_count_values($_SESSION['cart']))) {
-    display_cart($_SESSION['cart'], false, 0);
-
-
+    display_cart_checkout($_SESSION['cart'], false, 0);
 
     //display_shipping(20);
     display_checkout_form();
@@ -21,7 +19,5 @@
     echo "<p>There are no items in your cart</p>";
   }
 
-  display_button("show_cart.php", "continue-shopping", "Continue Shopping");
-
-  //do_html_footer();
+  do_html_footer();
 ?>

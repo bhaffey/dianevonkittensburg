@@ -257,9 +257,6 @@ function display_item_details($item) {
 function display_checkout_form() {
   //display the form that asks for name and address
 ?>
-</div>
-
-
   <br />
     <form action="purchase.php" method="post">
     <table border="0" width="100%" cellspacing="0">
@@ -334,11 +331,13 @@ function display_checkout_form() {
   <tr>
     <td colspan="2" align="center"><p><strong>Please press Purchase to confirm
          your purchase, or Continue Shopping to add or remove items.</strong></p>
-     <?php display_form_button("purchase", "Purchase These Items"); ?>
+     <?php display_form_button("purchase", "Purchase These Items"); 
+     echo "<div>&nbsp</div>";
+       display_button("show_cart.php", "continue-shopping", "Continue Shopping"); ?>
     </td>
   </tr>
   </form>
-  </table><hr />
+  </table>
 <?php
 }
 
@@ -455,14 +454,14 @@ function display_cart($cart, $change = true, $images = 1) {
     $item = get_item_details($items);
     echo "<tr>";
       echo "<td align=\"right\">";
-      echo "<a href=\"show_item.php?items_id=".$items."\">";
+      echo "<a href=\"show_item.php?items=".$items."\">";
            echo "<img src=\"images/".$item['image_loc']."\"
                   style=\"border: 1px solid black\"
                   width=\"100px\"
                   height=\"100px\"/></a>";
       echo "</td>";
     echo "<td align=\"left\">
-          <a href=\"show_item.php?items_id=".$items."\">".$item['name']."</a>
+          <a href=\"show_item.php?items=".$items."\">".$item['name']."</a>
           </td>
           <td align=\"left\">\$".number_format($item['price'], 2)."</td>
           <td align=\"left\">";
@@ -498,6 +497,70 @@ function display_cart($cart, $change = true, $images = 1) {
           </tr>";
   }
   echo "</form></table>";
+}
+
+function display_cart_checkout($cart, $change = true, $images = 1) {
+  // display items in shopping cart
+  // optionally allow changes (true or false)
+  // optionally include images (1 - yes, 0 - no)
+
+   echo "<div style=\"width: 100%\"><table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"8px\">
+         <form action=\"show_cart.php\" method=\"post\">
+         <tr>
+         <th colspan=\"".(2 + $images)."\" bgcolor=\"#cccccc\">Item</th>
+         <th style=\"text-align: left\" bgcolor=\"#cccccc\">Price</th>
+         <th style=\"text-align: left\" bgcolor=\"#cccccc\">Quantity</th>
+         <th style=\"text-align: left\" bgcolor=\"#cccccc\">Total</th>
+         </tr>";
+
+  //display each item as a table row
+  foreach ($cart as $items => $qty)  {
+    $item = get_item_details($items);
+    echo "<tr>";
+      echo "<td align=\"center\">";
+      echo "<a href=\"show_item.php?items=".$items."\">";
+           echo "<img src=\"images/".$item['image_loc']."\"
+                  style=\"border: 1px solid black\"
+                  width=\"100px\"
+                  height=\"100px\"/></a>";
+      echo "</td>";
+    echo "<td align=\"left\">
+          <a href=\"show_item.php?items=".$items."\">".$item['name']."</a>
+          </td>
+          <td align=\"left\">\$".number_format($item['price'], 2)."</td>
+          <td align=\"left\">";
+
+    // if we allow changes, quantities are in text boxes
+    if ($change == true) {
+      echo "<input type=\"text\" name=\"".$items."\" value=\"".$qty."\" size=\"3\">";
+    } else {
+      echo $qty;
+    }
+    echo "</td><td align=\"left\">\$".number_format($item['price']*$qty,2)."</td></tr>\n";
+  }
+  // display total row
+  echo "<tr>
+        <th colspan=\"".(3+$images)."\" bgcolor=\"#cccccc\">&nbsp;</td>
+        <th align=\"left\" bgcolor=\"#cccccc\">".$_SESSION['items']."</th>
+        <th align=\"left\" bgcolor=\"#cccccc\">
+            \$".number_format($_SESSION['total_price'], 2)."
+        </th>
+        </tr>";
+
+  // display save changes button
+  if($change == true) {
+    echo "<tr>
+          <td colspan=\"".(2+$images)."\">&nbsp;</td>
+          <td align=\"left\">
+                    <p style=\"font-size: 4px\">&nbsp;</p>
+             <input type=\"hidden\" name=\"save\" value=\"true\"/>
+             <input type=\"image\" src=\"images/save-changes.gif\"
+                    border=\"0\" alt=\"Save Changes\"/>
+          </td>
+          <td>&nbsp;</td>
+          </tr>";
+  }
+  echo "</form></table></div>";
 }
 
 function display_login_form() {

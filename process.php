@@ -16,7 +16,7 @@
      ($card_month) && ($card_name)) {
 
     //display cart, not allowing changes and without pictures
-    display_cart($_SESSION['cart'], false, 0);
+    display_cart_checkout($_SESSION['cart'], false, 0);
 
     display_shipping(calculate_shipping_cost());
 
