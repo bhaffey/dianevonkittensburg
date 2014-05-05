@@ -1,7 +1,32 @@
 <?php
+function display_all_items_to_delete() {
+?>
+  <form method="post" action="delete_item_output.php">
+  <table border="0" align="center">
+	<tr>
+      <td>Items:</td>  
+	  <td><select id="itemid" name="itemid">
+      <?php
+          // list of possible items comes from database
+          $item_array=show_all_items();
+		  echo "<option value=\"-1\">Select Item</option>";
+          foreach ($item_array as $thisItem) {
+				echo "<option value=\"".$thisItem['items_id']."\"";
+				echo ">".$thisItem['name']."</option>";
+          }
+      ?>
+          </select>
+       </td>
+   </tr>
+   <tr><td></td>
+		<td><input type="submit" value="   Delete Item    " /></td>
+   </tr>
+  </table>
+  </form>
+<?php
+}
 // This file contains functions used by the admin interface
 // for the item-O-Rama shopping cart.
-
 function display_category_form($category = '') {
 // This displays the category form.
 // This form can be used for inserting or editing categories.
@@ -294,12 +319,14 @@ function delete_category($catid) {
 
 
 function delete_item($items_id) {
-// Deletes the item identified by $isbn from the database.
+// Deletes the item identified by $items_id from the database.
 
    $conn = db_connect();
-
+   $query = "delete from order_description
+             where item_id='".$items_id."'";
+   $result = @$conn->query($query);
    $query = "delete from items
-             where items_id='".$items."'";
+             where items_id='".$items_id."'";
    $result = @$conn->query($query);
    if (!$result) {
      return false;
