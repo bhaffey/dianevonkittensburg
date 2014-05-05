@@ -25,6 +25,38 @@ function display_all_items_to_delete() {
   </form>
 <?php
 }
+
+function display_all_categories_to_delete() {
+?>
+  <form method="post" action="delete_category_output.php">
+  <table border="0" align="center">
+  <tr>
+      <td>Categories:</td>  
+    <td><select id="catid" name="catid">
+      <?php
+          // list of possible items comes from database
+
+      $category_array = get_categories();
+
+
+      echo "<option value=\"-1\">Select Category</option>";
+          foreach ($category_array as $thisCategory) {
+        echo "<option value=\"".$thisCategory['catid']."\"";
+        echo ">".$thisCategory['catname']."</option>";
+          }
+      ?>
+          </select>
+       </td>
+   </tr>
+   <tr><td></td>
+    <td><input type="submit" value="   Delete Category    " /></td>
+   </tr>
+  </table>
+  </form>
+<?php
+}
+
+
 // This file contains functions used by the admin interface
 // for the item-O-Rama shopping cart.
 function display_category_form($category = '') {
@@ -288,7 +320,7 @@ function update_item($items_id, $quantity, $category, $description, $size, $imag
    }
 }
 
-//i dont think this function will work for us since we dont keep categories in a separate table
+
 function delete_category($catid) {
 // Remove the category identified by catid from the db
 // If there are items in the category, it will not
@@ -298,11 +330,15 @@ function delete_category($catid) {
 
    // check if there are any items in category
    // to avoid deletion anomalies
-   $query = "select category
+   $query = "select catid
              from items
              where catid='".$catid."'";
 
+
+
    $result = @$conn->query($query);
+
+                //echo $result;
    if ((!$result) || (@$result->num_rows > 0)) {
      return false;
    }

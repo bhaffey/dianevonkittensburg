@@ -612,6 +612,9 @@ function display_admin_menu() {
 	  <li>
         <a href="delete_item.php">Delete an item</a>
       </li>
+          <li>
+        <a href="delete_category.php">Delete a category</a>
+      </li>
       <li>
 <a href="change_password_form.php">Change password</a>
       </li>
