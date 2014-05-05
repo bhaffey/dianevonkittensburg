@@ -10,6 +10,16 @@
     display_button("admin.php", "admin-menu", "Admin Menu");
     echo "</div>";
   }
+    if(isset($_SESSION['worker_user'])) {
+    echo "<div class='floatright'>";
+    echo "<a href=\"employee.php\"><img src=\"images/employee_menu.png\" height=\"45px\" /></a>";
+    echo "</div>";
+  }
+    if(isset($_SESSION['customer_user'])) {
+    echo "<div class='floatright'>";
+     echo "<a href=\"user.php\"><img src=\"images/user_menu.png\" height=\"50px\" /></a>";
+    echo "</div>";
+  }
 
   echo "<p style=\"clear:both\">&nbsp;";
   echo "<img src=\"images/stockphoto.jpg\" height=\"400px\"></img>";

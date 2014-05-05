@@ -334,8 +334,6 @@ function delete_category($catid) {
              from items
              where catid='".$catid."'";
 
-
-
    $result = @$conn->query($query);
 
                 //echo $result;

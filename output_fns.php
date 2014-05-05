@@ -33,8 +33,12 @@ function do_html_header($title = '') {
           <?php
              if(!(isset($_SESSION['admin_user'])||isset($_SESSION['worker_user'])||isset($_SESSION['customer_user']))) {
                 echo "<a href=\"login.php\"><img src=\"images/signin.jpg\"></img></a>";
-             } else {
-                echo "<font size=\"5\" style=\"text-transform:capitalize; font-style:italic;\">Welcome <b>".$_SESSION['username']."</b></font>";
+             } 
+             else if ($_SESSION['logout'] == 1) {
+                echo "<font size=\"4\" style=\"text-transform:capitalize;\">Goodbye <b>".$_SESSION['username']."</b></font>";
+             }
+             else {
+                echo "<font size=\"4\" style=\"text-transform:capitalize; font-style:italic;\">Welcome <b>".$_SESSION['username']."</b></font>";
              }
         ?>
         <a href="show_cart.php"><img src="images/shoppingbag.jpg" border="0"></img></a>
@@ -656,9 +660,8 @@ function display_customer_menu() {
 ?>
 <div id="navbar_user">
   <ul>
-    <li>
-<a href="index.php">Go to main site</a></li>
-<h3>Select a category from the menu</h3>
+    <li><a href="index.php">Go to main site</a></li>
+
 <li><a href="change_password_form.php">Change password</a></li>
        <li>
         <a href="logout.php">Logout</a>
